@@ -1,0 +1,54 @@
+<%- include("partials/header.ejs") %>
+<div class="container page .d-lg-inline-flex">
+  <div class="container mt-5">
+    <h1>Create your task</h1>
+    <form
+      action="/submit"
+      method="POST"
+      class="box d-flex flex-column justify-content-center py-3 my-3 p-3"
+    >
+      <label>Task name:</label>
+      <input type="text" name="name" />
+      <label>Description:</label>
+      <input type="text" name="desc" />
+      <label>When to complete:</label>
+      <select name="duration">
+        <option value="Weekly">Weekly</option>
+        <option value="Daily">Daily</option>
+      </select>
+      <button
+        type="submit"
+        value="Submit"
+        class="btn btn-light my-2 font-weight-bold"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="container mt-5">
+    <h1>Your tasks:</h1>
+    <ul
+      class="d-flex justify-content-center flex-sm-column flex-md-row flex-lg-row flex-md-wrap flex-column w-75 align-items-center pl-0"
+    >
+      <%taskArrayAll.forEach((items)=> { %>
+      <li
+        class="box task <%=items.status%> d-flex flex-column flex-wrap justify-content-center p-3"
+        id="<%=items.number%>"
+      >
+        <span class="fw-semibold"><%=items.name %><br /></span>
+        <%=items.desc %><br />
+        <%=items.duration %>
+      </li>
+      <%}) %>
+    </ul>
+  </div>
+</div>
+<script>
+  const done = document.querySelectorAll(".task");
+  done.forEach((el) =>
+    el.addEventListener("click", (event) => {
+      event.target.classList.add("complete");
+    })
+  );
+</script>
+<%- include("partials/footer.ejs") %>

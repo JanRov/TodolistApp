@@ -1,0 +1,20 @@
+<%- include("partials/header.ejs") %>
+<div class="container mt-5">
+  <h1>Your tasks:</h1>
+  <ul
+    class="d-flex justify-content-center py-3 flex-sm-column flex-md-row flex-lg-row flex-md-wrap flex-column w-75"
+  >
+    <%taskArrayWeekly.forEach((items)=> { %>
+    <li
+      onclick="this.style.backgroundColor = `#16C79A`"
+      class="box <%=items.status%> d-flex flex-column flex-wrap justify-content-center py-3 my-3 p-3"
+      id="<%=items.number%>"
+    >
+      <span class="fw-semibold"><%=items.name %><br /></span>
+      <%=items.desc %><br />
+      <%=items.duration %>
+    </li>
+    <%}) %>
+  </ul>
+</div>
+<%- include("partials/footer.ejs") %>
